@@ -1,0 +1,8 @@
+{
+  "name": "tccfi-brain-flow-interpreter",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "build": "echo \"Static app: no build step required\""
+  }
+}
