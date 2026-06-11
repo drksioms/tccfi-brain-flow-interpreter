@@ -117,6 +117,7 @@
         border: 1px solid var(--line);
         border-radius: 8px;
         padding: 8px;
+        position: relative;
       }
 
       .quick-metric span {
@@ -130,6 +131,60 @@
         display: block;
         font-size: 18px;
         margin-top: 2px;
+      }
+
+      .quick-label {
+        align-items: center;
+        display: flex;
+        gap: 6px;
+        justify-content: space-between;
+      }
+
+      .help-button {
+        align-items: center;
+        background: rgba(94, 234, 212, 0.14);
+        border: 1px solid rgba(94, 234, 212, 0.42);
+        border-radius: 999px;
+        color: #ccfbf1;
+        cursor: pointer;
+        display: inline-flex;
+        flex: 0 0 auto;
+        font-size: 12px;
+        font-weight: 900;
+        height: 22px;
+        justify-content: center;
+        line-height: 1;
+        min-width: 22px;
+        padding: 0;
+      }
+
+      .metric-help {
+        background: rgba(9, 9, 11, 0.98);
+        border: 1px solid rgba(94, 234, 212, 0.36);
+        border-radius: 8px;
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.38);
+        color: #e7e5e4;
+        display: none;
+        font-size: 12px;
+        left: 0;
+        line-height: 1.55;
+        margin-top: 8px;
+        padding: 10px;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        z-index: 20;
+      }
+
+      .quick-metric.help-open .metric-help {
+        display: block;
+      }
+
+      .metric-help strong {
+        color: #ccfbf1;
+        display: block;
+        font-size: 12px;
+        margin: 0 0 4px;
       }
 
       .jump-row {
@@ -430,10 +485,38 @@
 
       <section class="quick-summary" aria-label="計算値サマリー">
         <div class="quick-row">
-          <div class="quick-metric"><span>PI</span><strong id="piMini">--</strong></div>
-          <div class="quick-metric"><span>RI</span><strong id="riMini">--</strong></div>
-          <div class="quick-metric"><span>Lindegaard</span><strong id="lindegaardMini">--</strong></div>
-          <div class="quick-metric"><span>BA/VA</span><strong id="baVaMini">--</strong></div>
+          <div class="quick-metric">
+            <div class="quick-label"><span>PI</span><button class="help-button" type="button" data-help="pi">?</button></div>
+            <strong id="piMini">--</strong>
+            <div class="metric-help" id="help-pi">
+              <strong>PI / 拍動指数</strong>
+              (PSV - EDV) / MFV。高値は末梢抵抗上昇や低CPP patternの可能性を示唆しますが、ICP推定には使用しません。
+            </div>
+          </div>
+          <div class="quick-metric">
+            <div class="quick-label"><span>RI</span><button class="help-button" type="button" data-help="ri">?</button></div>
+            <strong id="riMini">--</strong>
+            <div class="metric-help" id="help-ri">
+              <strong>RI / 抵抗指数</strong>
+              (PSV - EDV) / PSV。抵抗性の参考指標です。単独で診断や治療判断には使用しません。
+            </div>
+          </div>
+          <div class="quick-metric">
+            <div class="quick-label"><span>Lindegaard</span><button class="help-button" type="button" data-help="lindegaard">?</button></div>
+            <strong id="lindegaardMini">--</strong>
+            <div class="metric-help" id="help-lindegaard">
+              <strong>Lindegaard Ratio / MCA-ICA比</strong>
+              MCA MFV / 同側頭蓋外ICA MFV。SAHでvasospasm physiologyの補助評価に使います。ICA未入力時はprovisionalです。
+            </div>
+          </div>
+          <div class="quick-metric">
+            <div class="quick-label"><span>BA/VA</span><button class="help-button" type="button" data-help="baVa">?</button></div>
+            <strong id="baVaMini">--</strong>
+            <div class="metric-help" id="help-baVa">
+              <strong>BA/VA Ratio / BA-VA比</strong>
+              BA MFV / 頭蓋外VA MFV。後方循環vasospasm physiologyの補助評価に使います。VA未入力時はprovisionalです。
+            </div>
+          </div>
         </div>
         <div class="jump-row" aria-label="画面内移動">
           <a href="#diseaseSection">疾患</a>
@@ -825,6 +908,26 @@
         interpretations.push(`<strong>PCAS/HIBI classification: ${classification}</strong><br>${message}`);
       }
 
+      function setupMetricHelp() {
+        document.querySelectorAll("[data-help]").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            event.stopPropagation();
+            const metric = button.closest(".quick-metric");
+            const isOpen = metric.classList.contains("help-open");
+            document.querySelectorAll(".quick-metric.help-open").forEach((item) => {
+              item.classList.remove("help-open");
+            });
+            if (!isOpen) metric.classList.add("help-open");
+          });
+        });
+
+        document.addEventListener("click", () => {
+          document.querySelectorAll(".quick-metric.help-open").forEach((item) => {
+            item.classList.remove("help-open");
+          });
+        });
+      }
+
       function update() {
         const psv = numberValue("psv");
         const edv = numberValue("edv");
@@ -1034,6 +1137,7 @@
       renderFlags();
       renderPcasInputs();
       renderBrainDeathPatterns();
+      setupMetricHelp();
       update();
     </script>
   </body>
