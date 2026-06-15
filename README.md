@@ -8,7 +8,7 @@ Version 1 は、GitHub Pages または Netlify でそのまま公開できる静
 
 ## 目的
 
-本アプリは、TCD/TCCFI/TCCSによる以下の評価を補助します。
+本アプリは、TCCFI/TCCS/TCDによる以下の評価を補助します。
 
 - SAHにおけるvasospasm physiologyの補助評価
 - TBIにおけるhigh distal resistance / possible low CPP patternの補助評価

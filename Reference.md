@@ -190,6 +190,7 @@ Do not output:
 
 Supported classification:
 
+- absolute supportive pattern
 - trend favorable supportive
 - trend concerning
 - indeterminate
@@ -207,6 +208,42 @@ Clinical context required for cautious interpretation:
 - Previous MFV / PI / EtCO2 / MAP
 
 ## Supported outputs
+
+Single-measurement absolute values may support physiologic pattern interpretation.
+
+Do not use absolute values for neurological prognosis.
+
+When PI is high and EDV is low:
+
+"PI上昇とEDV低下は高末梢抵抗またはpossible low CPP patternに整合します。PCAS/HIBIではMAP、CO2、TTM、鎮静、循環補助の影響を強く受けるため慎重に解釈してください。"
+
+Classification:
+
+absolute supportive pattern
+
+When MCA MFV is low:
+
+"MCA MFV低値はlow flowまたはhypoperfusion patternの可能性を示唆します。低MAP、低CO2、深鎮静、TTM、循環補助条件を考慮してください。"
+
+Classification:
+
+absolute supportive pattern
+
+When MCA MFV is high:
+
+"MCA MFV高値はhyperemia、reperfusion、高CO2影響など複数の可能性を示唆します。単独で予後良好とは判定できません。"
+
+Classification:
+
+absolute supportive pattern
+
+When EDV is preserved and PI is not high:
+
+"EDVが保たれPI高値が目立たない所見はpreserved diastolic forward flowに整合します。ただしPCAS/HIBIでは単独で予後良好とは判定できません。"
+
+Classification:
+
+absolute supportive pattern
 
 When previous MFV is missing:
 

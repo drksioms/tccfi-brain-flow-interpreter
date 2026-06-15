@@ -55,9 +55,8 @@ Yes
 
 Values:
 
+- TCCFI_TCCS
 - TCD
-- TCCFI
-- TCCS
 
 ---
 
@@ -372,6 +371,17 @@ TCD/TCCFI/TCCS alone cannot confirm ICP or CPP.
 These variables are used only for Version 0.2 PCAS/HIBI serial trend support.
 
 PCAS/HIBI module must not determine favorable or poor neurological prognosis from TCD/TCCFI/TCCS.
+
+Single-measurement absolute values may be used only for supportive physiologic pattern interpretation.
+
+Supported absolute patterns:
+
+- high distal resistance / possible low CPP pattern
+- low flow / hypoperfusion pattern
+- hyperemia / reperfusion / CO2-related high velocity pattern
+- preserved diastolic forward flow pattern
+
+These patterns must not be displayed as prognosis.
 
 ## Days After ROSC
 
@@ -772,7 +782,11 @@ cm/s
 
 Required:
 
-Posterior circulation module
+Optional
+
+Use:
+
+Only when posterior circulation assessment is intended.
 
 ---
 
@@ -788,7 +802,11 @@ cm/s
 
 Required:
 
-Posterior circulation module
+Optional
+
+Use:
+
+Only when posterior circulation assessment is intended.
 
 ---
 
@@ -801,6 +819,10 @@ baVaRatio
 Formula:
 
 BA MFV / mean extracranial VA MFV
+
+Required:
+
+Only when both BA MFV and VA MFV are entered.
 
 Thresholds:
 
